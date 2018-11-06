@@ -429,7 +429,12 @@ zbus的代理能力还体现在其扩展性，sendFilter与recvFilter提供了�
 ```
 
 
+## ZBUS 
+Flexible messaging models based on Channel
 
+* 1) PubSub: default, each subscriber generated unique channel  // 订阅 （点对点）
+* 2) LoadBalance: subscribers share same channel                //广播    （群发）
+* 3) Mixed: each group of subscribers share a same channel      // 混合型
 
 
 
