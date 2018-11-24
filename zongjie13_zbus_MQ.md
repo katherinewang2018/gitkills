@@ -84,3 +84,61 @@ Broker broker = new Broker("localhost:15555");
 		consumer.start();
 		System.out.println("结束...");
 ```
+
+## RPC
+```
+ public void configPlugin(Plugins plugins) {
+	 //增加zbus插件
+	  plugins.add(new ZbusRpcServerPlugin());
+ }
+```
+
+zbus rpc 插件
+```
+public class ZbusRpcServerPlugin implements IPlugin {
+
+    ServiceBootstrap serviceBootstrap;
+
+    @Override
+    public boolean start() {
+        Prop prop = PropKit.use("zbus.properties");
+        String brokerAddress = prop.get("serverAddress", "");
+        String serviceName = prop.get("serviceName", "");
+        String module = prop.get("module", "");
+        String token = prop.get("token", "");
+        if (StringUtil.isEmpty(brokerAddress) || StringUtil.isEmpty(serviceName)) {
+            System.out.println("zbus RPC Service 启动失败;配置错误");
+            return false;
+        }
+        try {
+            serviceBootstrap = new ServiceBootstrap();
+            serviceBootstrap.serviceAddress(brokerAddress).serviceName(serviceName).methodPage(true);
+            if (StringUtil.isNotEmpty(module)) {
+                serviceBootstrap.addModule(module, MemberController.class);
+            }
+            if (StringUtil.isNotEmpty(token)) {
+                serviceBootstrap.serviceToken(token);
+            }
+
+            serviceBootstrap.start();
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean stop() {
+        try {
+            if (serviceBootstrap != null) {
+                serviceBootstrap.close();
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+}
+```
