@@ -1,8 +1,10 @@
 ## Litecoin 钱包的窗口调试
-1.跳过下载安装（教程网上有）
-2.在钱包主界面有 帮助 选项，点击帮助-->调试窗口--> 控制台  在最底部有一个 > 符号，旁边就是一个输入框，这里就是用于输入命令的命令行。
-3. 钱包的命令：
+
+1.跳过下载安装（教程网上有）  
+2.在钱包主界面有 帮助 选项，点击帮助--&gt;调试窗口--&gt; 控制台  在最底部有一个 &gt; 符号，旁边就是一个输入框，这里就是用于输入命令的命令行。  
+3. 钱包的命令：  
 直接输入help 回车
+
 ```
 == Blockchain ==
 getbestblockhash
@@ -127,7 +129,6 @@ signmessage "address" "message"
 walletlock
 walletpassphrase "passphrase" timeout
 walletpassphrasechange "oldpassphrase" "newpassphrase"
-
 ```
 
 ### 输入getblocktemplate 返回数据
@@ -158,7 +159,7 @@ walletpassphrasechange "oldpassphrase" "newpassphrase"
       "sigops": 4,
       "weight": 892
     }
-    
+
   ],
   "coinbaseaux": {
     "flags": ""
@@ -180,5 +181,38 @@ walletpassphrasechange "oldpassphrase" "newpassphrase"
   "bits": "1a02c1e5",
   "height": 1534232
 }
-
 ```
+
+### 区块链的数据结构
+
+#### 区块头部分：
+
+version	4字节	版本号，⽤于跟踪软件/协议的更新
+
+prevBlockHash	32字节	上一个区块的Hash地址
+
+merkleRoot	32字节	该区块中交易的merkl e树根的哈希值（稍后详细说明）
+
+time	4字节	该区块的创建时间戳
+
+difficultyTarget	4字节	该区块链工作量证明难度目标\(稍后讲解工作量证明\)
+
+nonce	4字节	用于证明工作量的计算参数
+
+#### 区块体部分：
+
+|  |
+| :--- |
+
+
+| numTransactionsBytes | 1字节 | 交易数量占用的字节数 |
+| :--- | :--- | :--- |
+| numTransactions | 0-8个字节 | 区块内存储的交易数量 |
+| transactions | 不确定 | 区块内存的多个交易数据 |
+
+
+
+
+
+
+
