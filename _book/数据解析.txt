@@ -1,0 +1,16 @@
+https://coin-api.bitcoin.com/v1/coin-list   代币列表
+https://coin-api.bitcoin.com/v1/ticker
+
+https://coin-api.bitcoin.com/v1/hourly?symbols=EOS&compression=4
+https://coin-api.bitcoin.com/v1/hourly?symbols=EOS,BTC&compression=4
+
+https://coin-api.bitcoin.com/v1/hourly?symbols=
+REP,USDC,IOST,STRAT,HOT,PAX,KMD,ETN,SNT,MAID,CNX,WTC,MANA,MITH,ARDR,KCS,AION,WAX,WAN,NEXO,
+BNT,MOAC,QASH,RVN,GXS,HT,PIVX,ELF,R,ETA,MONA,LRC,DAI,SRN,ARK,DGD,ZEN,HC,POLY,RDD,DCN,LOOM,MCO,CMT,XIN,POWR,FUN,NXT,ELA,NAS&compression=4
+
+
+{"date":"1542184752","ticker":{"high":"207.36","vol":"3.00","last":"203.50","low":"202.69","buy":"204.05","sell":"204.40"}}
+String price = JSONObject.parseObject(result).getJSONObject("ticker").getString("last");
+
+{"open":53.3,"time":1539504000},{"open":53.32,"time":1539507600},{"open":53.1,"time":1539511200}
+
