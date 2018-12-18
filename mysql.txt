@@ -1,0 +1,9 @@
+安装mysql
+启动mysql出现1067的错误
+不需要创建my.ini 而是改变my-default.ini 中的
+ basedir = D:\software\mysql-5.6
+ datadir = D:\software\mysql-5.6\sqldata 
+放开注释 即可
+
+
+
