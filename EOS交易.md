@@ -10,6 +10,10 @@ https://www.jianshu.com/p/86fb466c9354 介绍eos交易的数据结构
 
 http://nm1024.com/506.html eos学习交流
 
+
+eos错误码总结
+https://www.douban.com/group/topic/120935198/
+
 2.构建eos交易的数据结构 
 eos没有java语言的交易实现，公司大佬写了sdk
 ```
@@ -125,6 +129,11 @@ TxMessageData
     public AccountName to;
     public Asset amount;
     public byte[] data;
+```
+
+账户不存在，资产金额不正确等
+```
+3050003 eosio_assert_message assertion failure
 ```
 
 
