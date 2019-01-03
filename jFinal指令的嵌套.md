@@ -345,3 +345,50 @@ Integer ret = Db.queryInt(sqlPara);
 
 ### 写sql时 能不要重复就不要重复 可以用判断#if() 来完成条件拼接
 
+### mysql中 left Join 与right join 和inner join 
+简单讲：
+　left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录。
+例如
+```
+select * from app01_publisher left join app01_book on app01_publisher.id = app01_book.publish_id
+```
+  right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录。
+例如
+```
+select * from app01_publisher right join app01_book on app01_publisher.id = app01_book.publish_id
+```
+
+  inner join(等值连接) 只返回两个表中联结字段相等的行。
+例如
+```
+select * from app01_publisher inner join app01_book on app01_publisher.id = app01_book.publish_id
+```
+
+
+### 关于 “A LEFT JOIN B ON 条件表达式” 的一点提醒
+
+ON 条件（“A LEFT JOIN B ON 条件表达式”中的ON）用来决定如何从 B 表中检索数据行。
+
+例如
+```
+SELECT e.*, e.event_id, ei.name, ei.cover, ei.intro, ei.lang
+FROM event e
+LEFT JOIN event_info ei ON e.event_id = ei.event_id AND ei.lang = 'ch'
+WHERE status != 0
+```
+
+如果使用了where
+
+先做了简单的LEFT JOIN然后使用 WHERE 子句从 LEFT JOIN的数据中过滤掉不符合条件的数据行。
+```
+SELECT e.*, e.event_id, ei.name, ei.cover, ei.intro, ei.lang
+FROM event e
+LEFT JOIN event_info ei ON e.event_id = ei.event_id 
+WHERE status != 0 AND ei.lang = 'ch'
+```
+
+
+
+详细内容：
+https://www.cnblogs.com/zjfjava/p/6041445.html
+
